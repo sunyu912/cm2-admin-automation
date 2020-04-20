@@ -18,15 +18,15 @@ course_directory = './'
 with open(sys.argv[1]) as fp:
     course_config = json.load(fp)
     courseid = course_config['courseid']
-    print(f'course id = {courseid}')
+    print('course id = ', courseid)
 
 for host in course_host_config[courseid]:
     if host['enabled']:
         print('Host {} enabled. Address = {}'.format(host['name'],host['host_addr']))
         for lesson_name in next(os.walk(course_directory))[1]:
             if '.' not in lesson_name:
-                print(f"===Posting {lesson_name}===")
-                lesson_directory = f'{course_directory}{lesson_name}'
+                print("===Posting ", lesson_name)
+                lesson_directory = course_directory + lesson_name
                 print(lesson_directory)
                 lesson_tag = lesson_name
                 ghost_poster = GhostPoster(course_tag=lesson_tag,
