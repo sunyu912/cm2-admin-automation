@@ -50,7 +50,7 @@ class GhostPoster:
 
         r = requests.get(url, headers=headers)
         #print('Getting the list of lessons ', r.content)
-        lesson_list = json.loads(r.content)
+        lesson_list = json.loads(str(r.content, 'utf-8'))
         #print(lesson_list)
         return lesson_list['posts']
 
