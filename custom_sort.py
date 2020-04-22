@@ -23,7 +23,9 @@ def sort_title(filepath) -> int:
         match_obj = re.match(r'L(\d+)(-*)(\d*)( *)(.*)', title)
         if not match_obj:
             match_obj = re.match(r'(Question)( )(\d\d)', title)
-            if match_obj.group(1) == 'Question':
+            if not match_obj:
+                return 0
+            elif match_obj.group(1) == 'Question':
                 return int(match_obj.group(3))
             else:
                 return 0
