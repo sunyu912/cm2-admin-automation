@@ -24,7 +24,7 @@ for host in course_host_config[courseid]:
     if host['enabled']:
         print('Host {} enabled. Address = {}'.format(host['name'],host['host_addr']))
         for lesson_name in next(os.walk(course_directory))[1]:
-            if '.' not in lesson_name:
+            if '.' not in lesson_name and 'I_' not in lesson_name:
                 print("===Posting ", lesson_name)
                 lesson_directory = course_directory + lesson_name
                 print(lesson_directory)
