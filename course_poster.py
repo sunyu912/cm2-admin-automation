@@ -20,14 +20,24 @@ with open(sys.argv[1]) as fp:
     courseid = course_config['courseid']
     print('course id = ', courseid)
 
+
+print(
+    '''
+Posting course [{}]
+Course instructor host address: {}
+Course student host address: {}
+    '''.format(courseid,
+               course_host_config[courseid]['teach']['host_addr'],
+               course_host_config[courseid]['learn']['host_addr']))
+
 for lesson_name in next(os.walk(course_directory))[1]:
     if '.' not in lesson_name:
         if 'I_' not in lesson_name:
-            print('Uploading {} to learn.codingminds.com'.format(lesson_name))
+            print('-------- Uploading [{}] to learn.codingminds.com --------'.format(lesson_name))
             lesson_tag = lesson_name
             host_type = 'learn'
         else:
-            print('Uploading {} to teach.codingminds.com'.format(lesson_name))
+            print('-------- Uploading [{}] to teach.codingminds.com --------'.format(lesson_name))
             lesson_tag = lesson_name.lstrip('I_')
             host_type = 'teach'
 
