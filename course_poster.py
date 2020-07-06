@@ -34,7 +34,7 @@ for lesson_name in next(os.walk(course_directory))[1]:
         lesson_directory = course_directory + lesson_name
         ghost_poster = GhostPoster(course_tag=lesson_tag,
                                    course_directory=lesson_directory,
-                                   key=course_host_config[host_type]['admin_key'],
-                                   host_addr=course_host_config[host_type]['host_addr'],
+                                   key=course_host_config[courseid][host_type]['admin_key'],
+                                   host_addr=course_host_config[courseid][host_type]['host_addr'],
                                    clean_old_lessons=True)
         ghost_poster.post_course()
