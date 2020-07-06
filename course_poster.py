@@ -20,33 +20,21 @@ with open(sys.argv[1]) as fp:
     courseid = course_config['courseid']
     print('course id = ', courseid)
 
-for host in course_host_config[courseid]:
-    if host['enabled']:
-        print('Host {} enabled. Address = {}'.format(host['name'],host['host_addr']))
-        for lesson_name in next(os.walk(course_directory))[1]:
-            if '.' not in lesson_name and 'I_' not in lesson_name:
-                print("===Posting ", lesson_name)
-                lesson_directory = course_directory + lesson_name
-                print(lesson_directory)
-                lesson_tag = lesson_name
-                ghost_poster = GhostPoster(course_tag=lesson_tag,
-                                           course_directory=lesson_directory,
-                                           key=host['admin_key'],
-                                           host_addr=host['host_addr'],
-                                           clean_old_lessons=True)
-                ghost_poster.post_course()
-        # else:
-        #     for lesson_name in next(os.walk(course_directory))[1]:
-        #         if '.' not in lesson_name and 'I_' in lesson_name:
-        #             print("===Posting ", lesson_name)
-        #             lesson_directory = course_directory + lesson_name
-        #             print(lesson_directory)
-        #             lesson_tag = lesson_name
-        #             ghost_poster = GhostPoster(course_tag=lesson_tag,
-        #                                        course_directory=lesson_directory,
-        #                                        key=host['admin_key'],
-        #                                        host_addr=host['host_addr'],
-        #                                        clean_old_lessons=True)
-        #             ghost_poster.post_course()
-    else:
-        print('Host {} not enabled. Address = {}'.format(host['name'],host['host_addr']))
+for lesson_name in next(os.walk(course_directory))[1]:
+    if '.' not in lesson_name:
+        if 'I_' not in lesson_name:
+            print('Uploading {} to learn.codingminds.com'.format(lesson_name))
+            lesson_tag = lesson_name
+            host_type = 'learn'
+        else:
+            print('Uploading {} to teach.codingminds.com'.format(lesson_name))
+            lesson_tag = lesson_name.lstrip('I_')
+            host_type = 'teach'
+
+        lesson_directory = course_directory + lesson_name
+        ghost_poster = GhostPoster(course_tag=lesson_tag,
+                                   course_directory=lesson_directory,
+                                   key=course_host_config[host_type]['admin_key'],
+                                   host_addr=course_host_config[host_type]['host_addr'],
+                                   clean_old_lessons=True)
+        ghost_poster.post_course()
