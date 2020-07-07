@@ -20,7 +20,6 @@ with open(sys.argv[1]) as fp:
     courseid = course_config['courseid']
     print('course id = ', courseid)
 
-
 print(
     '''
 Posting course [{}]
@@ -35,16 +34,22 @@ for lesson_name in next(os.walk(course_directory))[1]:
         if 'I_' not in lesson_name:
             print('-------- Uploading [{}] to learn.codingminds.com --------'.format(lesson_name))
             lesson_tag = lesson_name
-            host_type = 'learn'
-        else:
-            print('-------- Uploading [{}] to teach.codingminds.com --------'.format(lesson_name))
-            lesson_tag = lesson_name.lstrip('I_')
-            host_type = 'teach'
+            lesson_directory = course_directory + lesson_name
+            ghost_poster_learn = GhostPoster(course_tag=lesson_tag,
+                                             course_directory=lesson_directory,
+                                             key=course_host_config[courseid]['learn']['admin_key'],
+                                             host_addr=course_host_config[courseid]['learn']['host_addr'],
+                                             clean_old_lessons=True)
+            ghost_poster_learn.post_course()
+
+        print('-------- Uploading [{}] to teach.codingminds.com --------'.format(lesson_name))
+        lesson_tag = lesson_name.lstrip('I_')
+        host_type = 'teach'
 
         lesson_directory = course_directory + lesson_name
-        ghost_poster = GhostPoster(course_tag=lesson_tag,
-                                   course_directory=lesson_directory,
-                                   key=course_host_config[courseid][host_type]['admin_key'],
-                                   host_addr=course_host_config[courseid][host_type]['host_addr'],
-                                   clean_old_lessons=True)
-        ghost_poster.post_course()
+        ghost_poster_teach = GhostPoster(course_tag=lesson_tag,
+                                         course_directory=lesson_directory,
+                                         key=course_host_config[courseid]['teach']['admin_key'],
+                                         host_addr=course_host_config[courseid]['teach']['host_addr'],
+                                         clean_old_lessons=True)
+        ghost_poster_teach.post_course()
