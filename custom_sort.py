@@ -4,7 +4,7 @@ import re
 '''
 see lesson name naming convention
 '''
-
+# TODO: rewrite custom_sort.py
 
 def sort_title(filepath) -> int:
     """
@@ -23,6 +23,9 @@ def sort_title(filepath) -> int:
         return 1e9 - 2
     elif 'Exercise' in title:
         return 1e9 - 3
+    elif 'Lesson Plan' in title:
+        match_obj = re.match(r'Lesson Plan (\d+).md', title)
+        return int(match_obj.group(1))
     else:
         match_obj = re.match(r'L(\d+)(-*)(\d*)( *)(.*)', title)
         if not match_obj:
