@@ -25,6 +25,8 @@ def sort_title(filepath) -> int:
         return 1e9 - 3
     elif 'Lesson Plan' in title:
         match_obj = re.match(r'Lesson Plan (\d+).md', title)
+        if not match_obj:
+            return 0
         return int(match_obj.group(1))
     else:
         match_obj = re.match(r'L(\d+)(-*)(\d*)( *)(.*)', title)
