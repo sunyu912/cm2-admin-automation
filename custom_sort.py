@@ -6,7 +6,8 @@ patterns = {
     1: r'L(\d+) ([a-zA-Z ]+) ?(\d+)?\.md',
     2: r'L(\d+)-(\d+) ?([A-Za-z]+)?\.md',
     3: r'Question (\d+)\.md',
-    4: r'Lesson Plan ?(\d+)?\.md'
+    4: r'Lesson Plan ?(\d+)?\.md',
+    5: r'Q(\d+)-Q(\d+).md'
 }
 
 
@@ -25,11 +26,11 @@ def sort_title(filepath) -> int:
         try:
             if idx == 1:
                 sort_dict = {
-                    'Setup': -150,
-                    'Overview': -50,
-                    'Project': 0,
-                    'Homework': 50,
-                    'Summary': 150
+                    'Setup': -1e9,
+                    'Overview': -1e9+1,
+                    'Project': 1e9-2,
+                    'Homework': 1e9-1,
+                    'Summary': 1e9
                 }
                 if match_obj.group(2) in sort_dict:
                     return sort_dict[match_obj.group(2)] + int(match_obj.group(3)) \
@@ -43,6 +44,8 @@ def sort_title(filepath) -> int:
                 return int(match_obj.group(1))
             elif idx == 4:
                 return int(match_obj.group(1)) if match_obj.group(1) else 0
+            elif idx == 5:
+                return int(match_obj.group(1)) * 1e2
         except:
             return 0
 
