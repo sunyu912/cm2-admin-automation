@@ -27,9 +27,10 @@ def sort_title(filepath) -> int:
             if idx == 1:
                 sort_dict = {
                     'Setup': -1e9,
-                    'Overview': -1e9+1,
-                    'Project': 1e9-2,
-                    'Homework': 1e9-1,
+                    'Overview': -1e8,
+                    'Exercise': 1e6,
+                    'Project': 1e7,
+                    'Homework': 1e8,
                     'Summary': 1e9
                 }
                 if match_obj.group(2) in sort_dict:
