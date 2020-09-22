@@ -5,7 +5,7 @@ import re
 patterns = {
     1: r'L(\d+) ([a-zA-Z ]+) ?(\d+)?\.md',
     2: r'L(\d+)-(\d+) ?([A-Za-z]+)?\.md',
-    3: r'Question (\d+)\.md',
+    3: r'Question (\d+) ?([A-Za-z]+)?\.md',
     4: r'Lesson Plan ?(\d+)?\.md',
     5: r'Q(\d+)-Q(\d+).md'
 }
