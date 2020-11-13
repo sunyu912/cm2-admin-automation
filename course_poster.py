@@ -1,4 +1,5 @@
 from ghost_poster import GhostPoster
+from Poster3 import Poster3
 import os
 import json
 import requests
@@ -51,3 +52,10 @@ for lesson_name in next(os.walk(course_directory))[1]:
                                          host_addr=course_host_config[courseid]['teach']['host_addr'],
                                          clean_old_lessons=True)
         ghost_poster_teach.post_course()
+
+print('**Poster 3.0 Initialized**')
+
+print(f'couseid: {courseid}')
+
+p3 = Poster3(courseid)
+p3.post_course()
