@@ -60,7 +60,7 @@ class Poster3:
     def __get_course_list(self) -> list:
         path_list = []
         for lesson_number, lesson_name in enumerate(
-                next(os.walk(self.course_directory))[1]
+                sorted(next(os.walk(self.course_directory))[1])
         ):
             if '.' not in lesson_name:
                 path_list += self.__get_lesson_list(lesson_number, lesson_name)
@@ -71,7 +71,7 @@ class Poster3:
         course_list = self.__get_course_list()
 
         for obj in course_list:
-            # print(obj['path'])
+            print(obj['path'])
             if obj['content'] == '':
                 obj['contnet'] = 'Empty'
 
