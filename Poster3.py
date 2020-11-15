@@ -73,7 +73,7 @@ class Poster3:
         for obj in course_list:
             print(obj['path'])
             if obj['content'] == '':
-                obj['contnet'] = 'Empty'
+                obj['content'] = 'Empty'
 
         # input()
         data = {
