@@ -6,8 +6,8 @@ import json
 
 class Poster3:
 
-    URL = 'http://47.254.91.18:3000/api/courses/creatcourse/files'
-    config_URL = 'http://47.254.91.18/course-map/config.json'
+    URL = 'http://54.219.32.118:3000/api/courses/creatcourse/files'
+    config_URL = 'http://ec2-54-219-32-118.us-west-1.compute.amazonaws.com/apps/files/config-json'
 
     def __init__(self, courseid):
         self.__set_course_info(courseid)
