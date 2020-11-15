@@ -7,7 +7,7 @@ import json
 class Poster3:
 
     URL = 'http://54.219.32.118:3000/api/courses/creatcourse/files'
-    config_URL = 'http://ec2-54-219-32-118.us-west-1.compute.amazonaws.com/apps/files/config-json'
+    config_URL = 'http://54.219.32.118:3000/api/file/config-json'
 
     def __init__(self, courseid):
         self.__set_course_info(courseid)
@@ -96,5 +96,3 @@ class Poster3:
 # test_id = 'roblox2'
 #
 # p = Poster3(courseid=test_id)
-# p.post_course()
-
