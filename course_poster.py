@@ -53,8 +53,8 @@ for lesson_name in next(os.walk(course_directory))[1]:
         ghost_poster_teach.post_course()
 
 
-#
-# print(f'couseid: {courseid}')
-#
-# p3 = Poster3(courseid)
-# p3.post_course()
+
+print(f'couseid: {courseid}')
+
+p3 = Poster3(courseid)
+p3.post_course()
