@@ -21,10 +21,14 @@ class Poster3:
             exit()
 
         course_config = json.loads(r.text)
-        self.course_name = course_config[courseid]['name']
-        self.course_id = course_config[courseid]['id']
+        try:
+            self.course_name = course_config[courseid]['name']
+            self.course_id = course_config[courseid]['id']
 
-        print(f'Poster3: course name: {self.course_name}; course id: {self.course_id}')
+            print(f'Poster3: course name: {self.course_name}; course id: {self.course_id}')
+
+        except KeyError:
+            raise KeyError(f'Poster3: {courseid} does not have a configuration on the cloud')
 
     def __read_to_str(self, filename):
         with open(filename, 'r', encoding='utf-8') as fp:
