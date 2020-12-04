@@ -1,4 +1,5 @@
 from ghost_poster import GhostPoster
+from Poster3 import Poster3
 import os
 import json
 import requests
