@@ -44,7 +44,7 @@ for lesson_name in next(os.walk(course_directory))[1]:
             ghost_poster_learn.post_course()
 
         print('-------- Uploading [{}] to teach.codingminds.com --------'.format(lesson_name))
-        lesson_tag = lesson_name.lstrip('I_')
+        lesson_tag = lesson_name.lstrip('I').lstrip('_')
         lesson_directory = os.path.join(course_directory, lesson_name)
         ghost_poster_teach = GhostPoster(course_tag=lesson_tag,
                                          course_directory=lesson_directory,
