@@ -36,7 +36,10 @@ def sort_filename(filename) -> int:
                     return sort_dict[match_obj.group(2)] + int(match_obj.group(3)) \
                         if match_obj.group(3) else sort_dict[match_obj.group(2)]
                 else:
-                    return 0 + int(match_obj.group(3)) if match_obj.group(3) else 0
+                    if not match_obj.group(3):
+                        return int(match_obj.group(1))
+                    else:
+                        return int(match_obj.group(3))
             elif idx == 2:
                 return int(match_obj.group(2)) * 2 + 1 if match_obj.group(3) \
                     else int(match_obj.group(2)) * 2
