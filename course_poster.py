@@ -32,10 +32,10 @@ for name in ['teach', 'learn']:
                                clean_old_lessons=False)
     iter = 0
     while True:
-        print(iter)
+        print('Site Clear -', iter)
         posts = ghost_poster.delete_all_posts()
         iter += 1
-        if not posts:
+        if not posts or iter >= 50:
             break
 
 
