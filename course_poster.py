@@ -21,6 +21,24 @@ with open(sys.argv[1]) as fp:
     courseid = course_config['courseid']
     print('course id = ', courseid)
 
+
+print('clearing sites...')
+for name in ['teach', 'learn']:
+    host = course_host_config[courseid][name]
+    ghost_poster = GhostPoster(course_tag='',
+                               course_directory='',
+                               key=host['admin_key'],
+                               host_addr=host['host_addr'],
+                               clean_old_lessons=False)
+    iter = 0
+    while True:
+        print(iter)
+        posts = ghost_poster.delete_all_posts()
+        iter += 1
+        if not posts:
+            break
+
+
 print(
     '''
 Posting course [{}]
