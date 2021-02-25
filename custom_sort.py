@@ -7,7 +7,8 @@ patterns = {
     2: r'L(\d+)-(\d+) ?([A-Za-z]+)?\.md',
     3: r'Question (\d+).*\.md',
     4: r'Lesson Plan ?(\d+)?\.md',
-    5: r'Q(\d+)-Q(\d+).md'
+    5: r'Q(\d+)-Q(\d+).md',
+    6: r'Module ?(\d+)?\.md',
 }
 
 
@@ -49,6 +50,8 @@ def sort_filename(filename) -> int:
                 return int(match_obj.group(1)) if match_obj.group(1) else 0
             elif idx == 5:
                 return int(match_obj.group(1)) * 1e2
+            elif idx == 6:
+                return int(match_obj.group(1)) if match_obj.group(1) else 0
         except:
             return 0
 
