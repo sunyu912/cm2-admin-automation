@@ -4,7 +4,7 @@ import re
 # add more patterns according to curriculum development
 patterns = {
     1: r'L(\d+) ([a-zA-Z ]+) ?(\d+)?\.md',
-    2: r'L(\d+)-(\d+) ?([A-Za-z]+)?\.md',
+    2: r'L(\d+)-(\d+) ?([A-Za-z0-9\ ]+)?\.md',
     3: r'Question (\d+).*\.md',
     4: r'Lesson Plan ?(\d+)?\.md',
     5: r'Q(\d+)-Q(\d+).md',
@@ -42,8 +42,13 @@ def sort_filename(filename) -> int:
                     else:
                         return int(match_obj.group(3))
             elif idx == 2:
-                return int(match_obj.group(2)) * 2 + 1 if match_obj.group(3) \
-                    else int(match_obj.group(2)) * 2
+                if match_obj.group(3):
+                    if match_obj.group(3) == 'Exercise' or match_obj.group(3) == 'Exercises':
+                        return int(match_obj.group(2)) * 2 + 1
+                    else:
+                        return int(match_obj.group(2)) * 2 + 1.5
+                else:
+                    return int(match_obj.group(2)) * 2
             elif idx == 3:
                 return int(match_obj.group(1))
             elif idx == 4:
