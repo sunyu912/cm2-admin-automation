@@ -44,11 +44,12 @@ def sort_filename(filename) -> int:
             elif idx == 2:
                 if match_obj.group(3):
                     if match_obj.group(3) == 'Exercise' or match_obj.group(3) == 'Exercises':
-                        return int(match_obj.group(2)) * 2 + 1
+                        return int(match_obj.group(2)) * 10 + 1
                     else:
-                        return int(match_obj.group(2)) * 2 + 1.5
+                        print(filename)
+                        return int(match_obj.group(2)) * 10 + 2
                 else:
-                    return int(match_obj.group(2)) * 2
+                    return int(match_obj.group(2)) * 10
             elif idx == 3:
                 return int(match_obj.group(1))
             elif idx == 4:
