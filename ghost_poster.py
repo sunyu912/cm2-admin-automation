@@ -46,11 +46,12 @@ class GhostPoster:
 
     def list_lessons_with_tag(self):
         url = self.host + '/ghost/api/v3/admin/posts?filter=tag:' + self.course_tag.replace(' ', '-').lower() + '&limit=all'
+        # print('debug:', self.token.decode())
         headers = {'Authorization': 'Ghost {}'.format(self.token.decode())}
 
         r = requests.get(url, headers=headers)
         #print('Getting the list of lessons ', r.content)
-        lesson_list = json.loads(str(r.content, 'utf-8'))
+        lesson_list = json.loads(r.content)
         #print(lesson_list)
         return lesson_list['posts']
 
@@ -75,6 +76,7 @@ class GhostPoster:
 
             r = requests.delete(url, headers=headers)
             print('Deleting the lesson ', post['title'], r)
+        return all_posts
 
     def delete_lessons_with_tag(self):
         lesson_list = self.list_lessons_with_tag()
@@ -86,9 +88,9 @@ class GhostPoster:
 
                 r = requests.delete(url, headers=headers)
                 print('Deleting the lesson ', lesson['id'], r)
+        return lesson_list
 
     def post_lesson(self, lesson_file_path):
-
         head, tail = ntpath.split(lesson_file_path)
         filename = tail.replace('.md', '')
 
