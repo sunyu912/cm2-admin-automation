@@ -44,11 +44,13 @@ def sort_filename(filename) -> int:
             elif idx == 2:
                 if match_obj.group(3):
                     if match_obj.group(3) == 'Exercise' or match_obj.group(3) == 'Exercises':
+                        print(filename, int(match_obj.group(2)), int(match_obj.group(2)) * 10 + 1)
                         return int(match_obj.group(2)) * 10 + 1
                     else:
-                        print(filename)
+                        print(filename, int(match_obj.group(2)), int(match_obj.group(2)) * 10 + 2)
                         return int(match_obj.group(2)) * 10 + 2
                 else:
+                    print(filename, int(match_obj.group(2)), int(match_obj.group(2)) * 10)
                     return int(match_obj.group(2)) * 10
             elif idx == 3:
                 return int(match_obj.group(1))
@@ -61,45 +63,45 @@ def sort_filename(filename) -> int:
         except:
             return 0
 
-
-def sort_title(filepath) -> int:
-    _, title = os.path.split(filepath)
-    match_obj = None
-    idx = 1
-    while idx <= len(patterns):
-        match_obj = re.match(patterns[idx], title)
-        if match_obj:
-            break
-        idx += 1
-    if not match_obj:
-        return 0
-    else:
-        try:
-            if idx == 1:
-                sort_dict = {
-                    'Setup': -1e9,
-                    'Overview': -1e8,
-                    'Exercise': 1e6,
-                    'Project': 1e7,
-                    'Homework': 1e8,
-                    'Summary': 1e9
-                }
-                if match_obj.group(2) in sort_dict:
-                    return sort_dict[match_obj.group(2)] + int(match_obj.group(3)) \
-                        if match_obj.group(3) else sort_dict[match_obj.group(2)]
-                else:
-                    return 0 + int(match_obj.group(3)) if match_obj.group(3) else 0
-            elif idx == 2:
-                return int(match_obj.group(2)) * 2 + 1 if match_obj.group(3) \
-                    else int(match_obj.group(2)) * 2
-            elif idx == 3:
-                return int(match_obj.group(1))
-            elif idx == 4:
-                return int(match_obj.group(1)) if match_obj.group(1) else 0
-            elif idx == 5:
-                return int(match_obj.group(1)) * 1e2
-        except:
-            return 0
+#
+# def sort_title(filepath) -> int:
+#     _, title = os.path.split(filepath)
+#     match_obj = None
+#     idx = 1
+#     while idx <= len(patterns):
+#         match_obj = re.match(patterns[idx], title)
+#         if match_obj:
+#             break
+#         idx += 1
+#     if not match_obj:
+#         return 0
+#     else:
+#         try:
+#             if idx == 1:
+#                 sort_dict = {
+#                     'Setup': -1e9,
+#                     'Overview': -1e8,
+#                     'Exercise': 1e6,
+#                     'Project': 1e7,
+#                     'Homework': 1e8,
+#                     'Summary': 1e9
+#                 }
+#                 if match_obj.group(2) in sort_dict:
+#                     return sort_dict[match_obj.group(2)] + int(match_obj.group(3)) \
+#                         if match_obj.group(3) else sort_dict[match_obj.group(2)]
+#                 else:
+#                     return 0 + int(match_obj.group(3)) if match_obj.group(3) else 0
+#             elif idx == 2:
+#                 return int(match_obj.group(2)) * 2 + 1 if match_obj.group(3) \
+#                     else int(match_obj.group(2)) * 2
+#             elif idx == 3:
+#                 return int(match_obj.group(1))
+#             elif idx == 4:
+#                 return int(match_obj.group(1)) if match_obj.group(1) else 0
+#             elif idx == 5:
+#                 return int(match_obj.group(1)) * 1e2
+#         except:
+#             return 0
 
 
 # if __name__ == '__main__':

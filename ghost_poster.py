@@ -5,7 +5,7 @@ import json
 import os
 import ntpath
 from markdown_processor import MarkdownProcessor
-from custom_sort import sort_title
+from custom_sort import sort_filename
 
 class GhostPoster:
     key = ''
@@ -134,7 +134,7 @@ class GhostPoster:
                 if filepath.endswith(".md"):
                     file_list.append(filepath)
 
-        file_list.sort(key=sort_title)
+        file_list.sort(key=sort_filename)
 
         for file in file_list:
             print('Posting ', file)
