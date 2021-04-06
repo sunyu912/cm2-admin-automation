@@ -40,13 +40,13 @@ def sort_filename(filename) -> int:
             elif idx == 2:
                 if match_obj.group(3):
                     if match_obj.group(3) == 'Exercise' or match_obj.group(3) == 'Exercises':
-                        # print('debug:', filename, int(match_obj.group(2)), int(match_obj.group(2)) * 10 + 1)
+                        print('debug:', filename, int(match_obj.group(2)), int(match_obj.group(2)) * 10 + 1)
                         return int(match_obj.group(2)) * 100 + 1
                     else:
-                        # print('debug:', filename, int(match_obj.group(2)), int(match_obj.group(2)) * 10 + 2)
+                        print('debug:', filename, int(match_obj.group(2)), int(match_obj.group(2)) * 10 + 2)
                         return int(match_obj.group(2)) * 100 + 2
                 else:
-                    # print('debug:', filename, int(match_obj.group(2)), int(match_obj.group(2)) * 10)
+                    print('debug:', filename, int(match_obj.group(2)), int(match_obj.group(2)) * 10)
                     return int(match_obj.group(2)) * 100
             elif idx == 3:
                 return int(match_obj.group(1))
