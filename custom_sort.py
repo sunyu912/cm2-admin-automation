@@ -1,5 +1,5 @@
 import re
-
+import os
 # add more patterns according to curriculum development
 patterns = {
     1: r'L(\d+) ([a-zA-Z ]+) ?(\d+)?\.md',
@@ -12,6 +12,7 @@ patterns = {
 
 
 def sort_filename(filename) -> int:
+    _, filename = os.path.split(filename)
     match_obj = None
     idx = 1
     while idx <= len(patterns):
@@ -20,8 +21,10 @@ def sort_filename(filename) -> int:
             break
         idx += 1
     if not match_obj:
+        print('debug:', filename, 'not matched')
         return 0
     else:
+        print('debug:', filename, 'matched to', idx)
         try:
             if idx == 1:
                 sort_dict = {
