@@ -96,7 +96,8 @@ class Poster3:
 
         return
 
-
-# test_id = 'roblox2'
 #
+# test_id = 'python-pygame'
+# #
 # p = Poster3(courseid=test_id)
+# p.post_course()
