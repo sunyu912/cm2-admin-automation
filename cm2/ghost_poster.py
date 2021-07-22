@@ -4,8 +4,8 @@ from datetime import datetime as date
 import json
 import os
 import ntpath
-from markdown_processor import MarkdownProcessor
-from custom_sort import sort_filename
+from cm2.markdown_processor import MarkdownProcessor
+from cm2.custom_sort import sort_filename
 
 class GhostPoster:
     key = ''

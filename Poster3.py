@@ -1,6 +1,6 @@
 import os
 import requests
-from custom_sort import sort_filename
+from cm2.custom_sort import sort_filename
 import json
 
 
